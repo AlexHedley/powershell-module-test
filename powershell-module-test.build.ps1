@@ -14,7 +14,7 @@ Set-StrictMode -Version Latest
 #region Task to Update the PowerShell Module Help Files.
 # Pre-requisites: PowerShell Module PlatyPS.
 task UpdateHelp {
-    Import-Module .\code\powershell-module-test.build.psd1 -Force
+    Import-Module .\code\powershell-module-test.psd1 -Force
     Update-MarkdownHelp .\docs 
     New-ExternalHelp -Path .\docs -OutputPath .\en-US -Force
 }
@@ -24,21 +24,21 @@ task UpdateHelp {
 task CopyModuleFiles {
 
     # Copy Module Files to Output Folder
-    if (-not (Test-Path .\output\powershell-module-test.build)) {
-        $null = New-Item -Path .\output\powershell-module-test.build -ItemType Directory
+    if (-not (Test-Path .\output\powershell-module-test)) {
+        $null = New-Item -Path .\output\powershell-module-test -ItemType Directory
     }
 
-    Copy-Item -Path '.\code\en-US\' -Filter *.* -Recurse -Destination .\output\powershell-module-test.build -Force
-    #Copy-Item -Path '.\lib\' -Filter *.* -Recurse -Destination .\output\powershell-module-test.build -Force
-    Copy-Item -Path '.\code\public\' -Filter *.* -Recurse -Destination .\output\powershell-module-test.build -Force
-    #Copy-Item -Path '.\tests\' -Filter *.* -Recurse -Destination .\output\powershell-module-test.build -Force
+    Copy-Item -Path '.\code\en-US\' -Filter *.* -Recurse -Destination .\output\powershell-module-test -Force
+    #Copy-Item -Path '.\lib\' -Filter *.* -Recurse -Destination .\output\powershell-module-test -Force
+    Copy-Item -Path '.\code\public\' -Filter *.* -Recurse -Destination .\output\powershell-module-test -Force
+    #Copy-Item -Path '.\tests\' -Filter *.* -Recurse -Destination .\output\powershell-module-test -Force
     
     #Copy Module Manifest files
     Copy-Item -Path @(
         '.\code\README.md'
-        '.\code\powershell-module-test.build.psd1'
-        '.\code\powershell-module-test.build.psm1'
-    ) -Destination .\output\powershell-module-test.build -Force        
+        '.\code\powershell-module-test.psd1'
+        '.\code\powershell-module-test.psm1'
+    ) -Destination .\output\powershell-module-test -Force        
 }
 #endregion
 
@@ -78,7 +78,7 @@ task UpdateManifest {
     $ReleaseNotes = ((($MarkdownObject.ParseString($README).Children.Spans.Text) -match '\d\.\d\.\d') -split ' - ')[1]
     
     #Update Module with new version
-    Update-ModuleManifest -ModuleVersion $newVersion -Path .\powershell-module-test.build.psd1 -ReleaseNotes $ReleaseNotes
+    Update-ModuleManifest -ModuleVersion $newVersion -Path .\powershell-module-test.psd1 -ReleaseNotes $ReleaseNotes
 }
 #endregion
 
@@ -87,12 +87,12 @@ task PublishModule -If ($Configuration -eq 'Production') {
     Try {
         # Build a splat containing the required details and make sure to Stop for errors which will trigger the catch
         $params = @{
-            Path        = ('{0}\Output\powershell-module-test.build' -f $PSScriptRoot )
+            Path        = ('{0}\Output\powershell-module-test' -f $PSScriptRoot )
             NuGetApiKey = $env:psgallery
             ErrorAction = 'Stop'
         }
         Publish-Module @params
-        Write-Output -InputObject ('powershell-module-test.build PowerShell Module version published to the PowerShell Gallery')
+        Write-Output -InputObject ('powershell-module-test PowerShell Module version published to the PowerShell Gallery')
     }
     Catch {
         throw $_
