@@ -88,7 +88,7 @@ task PublishModule -If ($Configuration -eq 'Production') {
         # Build a splat containing the required details and make sure to Stop for errors which will trigger the catch
         $params = @{
             Path        = ('{0}\Output\powershell-module-test' -f $PSScriptRoot )
-            NuGetApiKey = $env:psgallery
+            NuGetApiKey = $env:NUGETAPIKEY
             ErrorAction = 'Stop'
         }
         Publish-Module @params
