@@ -14,7 +14,7 @@ Set-StrictMode -Version Latest
 #region Task to Update the PowerShell Module Help Files.
 # Pre-requisites: PowerShell Module PlatyPS.
 task UpdateHelp {
-    Import-Module .\powershell-module-test.build.psd1 -Force
+    Import-Module .\code\powershell-module-test.build.psd1 -Force
     Update-MarkdownHelp .\docs 
     New-ExternalHelp -Path .\docs -OutputPath .\en-US -Force
 }
@@ -28,16 +28,16 @@ task CopyModuleFiles {
         $null = New-Item -Path .\output\powershell-module-test.build -ItemType Directory
     }
 
-    Copy-Item -Path '.\en-US\' -Filter *.* -Recurse -Destination .\output\powershell-module-test.build -Force
+    Copy-Item -Path '.\code\en-US\' -Filter *.* -Recurse -Destination .\output\powershell-module-test.build -Force
     #Copy-Item -Path '.\lib\' -Filter *.* -Recurse -Destination .\output\powershell-module-test.build -Force
-    Copy-Item -Path '.\public\' -Filter *.* -Recurse -Destination .\output\powershell-module-test.build -Force
+    Copy-Item -Path '.\code\public\' -Filter *.* -Recurse -Destination .\output\powershell-module-test.build -Force
     #Copy-Item -Path '.\tests\' -Filter *.* -Recurse -Destination .\output\powershell-module-test.build -Force
     
     #Copy Module Manifest files
     Copy-Item -Path @(
-        '.\README.md'
-        '.\powershell-module-test.build.psd1'
-        '.\powershell-module-test.build.psm1'
+        '.\code\README.md'
+        '.\code\powershell-module-test.build.psd1'
+        '.\code\powershell-module-test.build.psm1'
     ) -Destination .\output\powershell-module-test.build -Force        
 }
 #endregion
@@ -64,7 +64,7 @@ task UpdateManifest {
     $Versions = $regex.Matches($MarkdownObject.ParseString($README).Children.Spans.Text) | foreach-object {$_.value}
     ($Versions | Measure-Object -Maximum).Maximum
 
-    $manifestPath = '.\powershell-module-test.build.psd1'
+    $manifestPath = '.\code\powershell-module-test.psd1'
  
     # Start by importing the manifest to determine the version, then add 1 to the Build
     $manifest = Test-ModuleManifest -Path $manifestPath
@@ -104,9 +104,7 @@ task PublishModule -If ($Configuration -eq 'Production') {
 task Clean {
     # Clean output folder
     if ((Test-Path .\output)) {
-
         Remove-Item -Path .\Output -Recurse -Force
-
     }
 }
 #endregion
