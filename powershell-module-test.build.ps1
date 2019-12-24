@@ -85,7 +85,6 @@ task UpdateManifest {
 #region Task to Publish Module to PowerShell Gallery
 task PublishModule -If ($Configuration -eq 'Production') {
     Try {
-        Write-Output -InputObject ('api: ' + $env:psgallery)
         # Build a splat containing the required details and make sure to Stop for errors which will trigger the catch
         $params = @{
             Path        = ('{0}\Output\powershell-module-test' -f $PSScriptRoot )
