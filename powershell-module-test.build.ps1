@@ -110,6 +110,6 @@ task Clean {
 #endregion
 
 #region Default Task. Runs Clean, Test, CopyModuleFiles Tasks
-$env:psgallery
+Write-Host $env:psgallery
 task . Clean, Test, CopyModuleFiles, PublishModule
 #endregion
