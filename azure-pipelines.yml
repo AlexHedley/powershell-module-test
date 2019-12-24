@@ -18,4 +18,4 @@ steps:
 - powershell: Invoke-Build -Configuration 'Production' -Task Clean, CopyModuleFiles, PublishModule
   displayName: 'Publish PowerShell Module'
   env:
-    NUGETAPIKEY: $(NugetAPIKey)
+    psgallery: $(NugetAPIKey)
