@@ -16,13 +16,13 @@ Add-Numbers [[-one] <Object>] [[-two] <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Adds two numbers together
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Add-Numbersy -one 1 -two 2
+Add-Numbers -one 1 -two 2
 ```
 
 ## PARAMETERS

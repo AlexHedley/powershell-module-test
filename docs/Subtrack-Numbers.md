@@ -5,15 +5,14 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-PowerShellProcess
+# Subtrack-Numbers
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
 ```
-Get-PowerShellProcess [<CommonParameters>]
+Subtrack-Numbers [[-one] <Object>] [[-two] <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -21,24 +20,50 @@ Get-PowerShellProcess [<CommonParameters>]
 
 ## EXAMPLES
 
-### Example 1
+### EXAMPLE 1
 ```
-PS C:\> {{ Add example code here }}
+Subtrack-Numbers -one 1 -two 2
 ```
-
-{{ Add example description here }}
 
 ## PARAMETERS
+
+### -one
+The first number
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -two
+The second number
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### None
 ## OUTPUTS
 
-### System.Object
 ## NOTES
 
 ## RELATED LINKS
