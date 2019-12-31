@@ -8,7 +8,7 @@ Function Add-Numbers($one, $two) {
 
 
     .EXAMPLE
-        Add-Numbersy -one 1 -two 2
+        Add-Numbers -one 1 -two 2
   #>
     $one + $two
 }
@@ -23,7 +23,7 @@ Function Subtrack-Numbers($one, $two) {
 
 
     .EXAMPLE
-        Subtrack-Numbersy -one 1 -two 2
+        Subtrack-Numbers -one 1 -two 2
   #>
     $one - $two
 }
