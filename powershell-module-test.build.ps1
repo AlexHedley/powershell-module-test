@@ -15,8 +15,10 @@ Set-StrictMode -Version Latest
 # Pre-requisites: PowerShell Module PlatyPS.
 task UpdateHelp {
     Import-Module .\code\powershell-module-test.psd1 -Force
+    #New-MarkdownHelp -Module powershell-module-test -OutputFolder $PSScriptRoot\docs #-Force
     Update-MarkdownHelp .\docs 
-    New-ExternalHelp -Path .\docs -OutputPath .\en-US -Force
+    New-ExternalHelp -Path .\docs -OutputPath .\code\en-US -Force
+    #.\docs\platyPS.ps1
 }
 #endregion
 

@@ -69,7 +69,7 @@ Description = 'A test PowerShell Module, built with ADO from GitHub'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Add-Numbers', 'Get-PowerShellProcess'
+FunctionsToExport = 'Add-Numbers', 'Subtrack-Numbers', 'Get-PowerShellProcess'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
@@ -109,11 +109,17 @@ PrivateData = @{
         # ReleaseNotes of this module
         # ReleaseNotes = ''
 
+        # Prerelease string of this module
+        # Prerelease = ''
+
+        # Flag to indicate whether the module requires explicit user acceptance for install/update/save
+        # RequireLicenseAcceptance = $false
+
         # External dependent modules of this module
-        # ExternalModuleDependencies = ''
+        # ExternalModuleDependencies = @()
 
     } # End of PSData hashtable
-    
+
  } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
@@ -123,3 +129,4 @@ HelpInfoURI = 'https://github.com/AlexHedley/powershell-module-test/blob/master/
 # DefaultCommandPrefix = ''
 
 }
+
