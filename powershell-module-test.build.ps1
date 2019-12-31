@@ -111,6 +111,7 @@ task Clean {
 
 #region Update Version
 task UpdateVersion {
+    $ModuleName = "powershell-module-test"
     $publishedModule = Find-Module -Name $ModuleName -ErrorAction 'Ignore' |
         Sort-Object -Property {[version]$_.Version} -Descending |
         Select -First 1
