@@ -133,5 +133,5 @@ task UpdateVersion {
 #endregion
 
 #region Default Task. Runs Clean, Test, CopyModuleFiles Tasks
-task . Clean, Test, UpdateVersion, CopyModuleFiles, PublishModule
+task . Clean, Test, UpdateHelp, UpdateVersion, CopyModuleFiles, PublishModule
 #endregion

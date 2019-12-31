@@ -15,7 +15,7 @@ steps:
 - powershell: .\bootstrap.ps1
   displayName: 'Install pre-requisites'
   
-- powershell: Invoke-Build -Configuration 'Production' -Task Clean, UpdateVersion, CopyModuleFiles, PublishModule
+- powershell: Invoke-Build -Configuration 'Production' -Task Clean, UpdateHelp, UpdateVersion, CopyModuleFiles, PublishModule
   displayName: 'Publish PowerShell Module'
   env:
     psgallery: $(NugetAPIKey)
