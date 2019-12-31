@@ -109,6 +109,28 @@ task Clean {
 }
 #endregion
 
+#region Update Version
+task UpdateVersion {
+    $publishedModule = Find-Module -Name $ModuleName -ErrorAction 'Ignore' |
+        Sort-Object -Property {[version]$_.Version} -Descending |
+        Select -First 1
+    
+    if ($null -ne $publishedModule)
+    {
+        [version] $publishedVersion = $publishedModule.Version
+        "  Published version [$publishedVersion]"
+        $version = $publishedVersion
+
+        #$manifest = Import-PowerShellDataFile .\BeardAnalysis.psd1 
+        #[version]$version = $Manifest.ModuleVersion
+        # Add one to the build of the version number
+        [version]$NewVersion = "{0}.{1}.{2}" -f $Version.Major, $Version.Minor, ($Version.Build + 1) 
+        # Update the manifest file
+        Update-ModuleManifest -Path .\code\powershell-module-test.psd1 -ModuleVersion $NewVersion
+    }
+}
+#endregion
+
 #region Default Task. Runs Clean, Test, CopyModuleFiles Tasks
-task . Clean, Test, CopyModuleFiles, PublishModule
+task . Clean, Test, UpdateVersion, CopyModuleFiles, PublishModule
 #endregion
